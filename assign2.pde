@@ -42,24 +42,24 @@ final int TOTAL_LIFE=3;
 
 void setup() {
   size(640, 480, P2D);//set canvans
-  bg=loadImage("bg.jpg");
-  soil= loadImage("soil.png");
+  bg=loadImage("img/bg.jpg");
+  soil= loadImage("img/soil.png");
  
-  groundhogDown= loadImage("groundhogDown.png");
-  groundhogIdle= loadImage("groundhogIdle.png");
-  cabbage= loadImage("cabbage.png");
-  life3= loadImage("life3.png");
-  life= loadImage("life.png");
-  life2= loadImage("life2.png");
-  gameover= loadImage("gameover.jpg");
-  soldier= loadImage("soldier.png");
-  groundhogLeft= loadImage("groundhogLeft.png");
-  groundhogRight= loadImage("groundhogRight.png");
-  restartHovered= loadImage("restartHovered.png");
-  restartNormal= loadImage("restartNormal.png");
-  startHovered= loadImage("startHovered.png");
-  startNormal= loadImage("startNormal.png");
-  title=loadImage("title.jpg");
+  groundhogDown= loadImage("img/groundhogDown.png");
+  groundhogIdle= loadImage("img/groundhogIdle.png");
+  cabbage= loadImage("img/cabbage.png");
+  life3= loadImage("img/life.png");
+  life= loadImage("img/life.png");
+  life2= loadImage("img/life.png");
+  gameover= loadImage("img/gameover.jpg");
+  soldier= loadImage("img/soldier.png");
+  groundhogLeft= loadImage("img/groundhogLeft.png");
+  groundhogRight= loadImage("img/groundhogRight.png");
+  restartHovered= loadImage("img/restartHovered.png");
+  restartNormal= loadImage("img/restartNormal.png");
+  startHovered= loadImage("img/startHovered.png");
+  startNormal= loadImage("img/startNormal.png");
+  title=loadImage("img/title.jpg");
 	// Enter Your Setup Code Here
 //soldier position
 soldierY=160+80*floor(random(4));
