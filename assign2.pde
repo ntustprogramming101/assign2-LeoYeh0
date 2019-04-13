@@ -11,7 +11,10 @@ PImage soil,bg,groundhogIdle,life,life2,life3,cabbage,gameover,soldier,groundhog
 int floorNumberY=floor(random(3))+1;
 int floorNumberX=floor(random(8));
 final int BUTTON_LEFT=248,BUTTON_RIGHT=392,BUTTON_TOP=360, BUTTON_BOTTOM=420;
-
+int groundhogDownX=1000,groundhogDownY=-1000;
+int groundhogLeftX=1000,groundhogLeftY=-1000;
+int groundhogRightX=1000,groundhogRightY=-1000;
+boolean downMove=false,rightMove=false,leftMove=false,move=false;
 boolean upPressed, downPressed, rightPressed, leftPressed;
 final int GAME_START = 0;
 final int GAME_RUN = 1;
@@ -63,9 +66,8 @@ void setup() {
 	// Enter Your Setup Code Here
 //soldier position
 soldierY=160+80*floor(random(4));
-cabbageX=80*floorNumberX;
-cabbageY=160+floorNumberY*80;
-
+cabbageX=80*(floor(random(3))+1);;
+cabbageY=160+(floor(random(8)));
 }
 
 void draw() {
@@ -73,6 +75,9 @@ void draw() {
 switch(gameState){
   // Game Start
 case GAME_START:
+       image(groundhogDown,groundhogDownX,groundhogDownY);
+      image(groundhogLeft,groundhogLeftX,groundhogLeftY);
+      image(groundhogRight,groundhogRightX,groundhogRightY);
 
 
 image(title,0,0);
@@ -113,6 +118,9 @@ case GAME_RUN:
   //groundhogIdle movement
   image(groundhogIdle,groundhogIdleX,groundhogIdleY);
 if(downPressed){
+  
+  groundhogDownY+=5;
+ groundhogDownY=min(groundhogDownY,400);
 groundhogIdleY += groundhogIdleSpeed;
 downPressed=false;
 if(groundhogIdleY + groundhogIdleHeight> height) 
@@ -139,8 +147,8 @@ rightPressed=false;
   switch(lifeCount){
      
     case LIFE2:
-     
-  
+     life2X=80;
+
     if((groundhogIdleX<soldierX+soldierWidth&&groundhogIdleX + groundhogIdleWidth>soldierX)&&
   (groundhogIdleY<soldierY+soldierWidth&&groundhogIdleY+groundhogIdleWidth>soldierY)){
     groundhogIdleX=width/2;
@@ -148,6 +156,7 @@ rightPressed=false;
     life2X=1000;
     
     lifeCount=LIFE1;
+    
   }
   if((groundhogIdleX<cabbageX+cabbageWidth&&groundhogIdleX + groundhogIdleWidth>cabbageX)&&
   (groundhogIdleY<cabbageY+cabbageWidth&&groundhogIdleY+groundhogIdleWidth>cabbageY)){
@@ -212,8 +221,11 @@ break;
 
 		// Game Lose
 case GAME_OVER:
-
-
+soldierY=160+80*floor(random(4));
+cabbageX=80*floor(random(8));
+cabbageY=160+floor(random(3))+10;
+groundhogIdleX=320;
+groundhogIdleY=80;
 image(gameover,0,0);
 image(restartNormal,BUTTON_LEFT,BUTTON_TOP);
   if(mouseX > BUTTON_LEFT && mouseX < BUTTON_RIGHT
@@ -222,10 +234,12 @@ image(restartHovered,BUTTON_LEFT,BUTTON_TOP);
 if(mousePressed){
   
 gameState = GAME_RUN;
+lifeCount=LIFE2;
 }
 }else{
-image(startNormal,BUTTON_LEFT,BUTTON_TOP);
+image(restartNormal,BUTTON_LEFT,BUTTON_TOP);
 }
+
 break;}
 
 }
